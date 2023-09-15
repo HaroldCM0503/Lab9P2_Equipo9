@@ -1,5 +1,6 @@
 package lab9p2_equipo9;
 
+import java.awt.Color;
 import javax.swing.JOptionPane;
 
 public class Main extends javax.swing.JFrame {
@@ -102,6 +103,11 @@ public class Main extends javax.swing.JFrame {
         bt_updatetabla.setText("Update Tabla");
 
         bt_eliminarregistro.setText("Eliminar Registro");
+        bt_eliminarregistro.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                bt_eliminarregistroMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -136,18 +142,38 @@ public class Main extends javax.swing.JFrame {
         bt_listaorders.setBackground(new java.awt.Color(0, 102, 51));
         bt_listaorders.setForeground(new java.awt.Color(255, 255, 255));
         bt_listaorders.setText("Orders");
+        bt_listaorders.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                bt_listaordersMouseClicked(evt);
+            }
+        });
 
         bt_listadetails.setBackground(new java.awt.Color(255, 204, 0));
         bt_listadetails.setForeground(new java.awt.Color(255, 255, 255));
         bt_listadetails.setText("Details");
+        bt_listadetails.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                bt_listadetailsMouseClicked(evt);
+            }
+        });
 
         jButton1.setBackground(new java.awt.Color(255, 102, 102));
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Customers");
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton1MouseClicked(evt);
+            }
+        });
 
         bt_listarproducts.setBackground(new java.awt.Color(153, 153, 255));
         bt_listarproducts.setForeground(new java.awt.Color(255, 255, 255));
         bt_listarproducts.setText("Products");
+        bt_listarproducts.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                bt_listarproductsMouseClicked(evt);
+            }
+        });
 
         jButton2.setText("clear");
 
@@ -478,54 +504,108 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_tf_salesActionPerformed
 
     private void bt_agregarregistroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bt_agregarregistroMouseClicked
-        if (tf_orderId.getText().equals("") ||
-                tf_orderdate.getText().equals("") ||
-                tf_shipdate.getText().equals("") ||
-                tf_shipMode.getText().equals("") ||
-                tf_customerid.getText().equals("") ||
-                tf_customername.getText().equals("") ||
-                tf_segment.getText().equals("") ||
-                tf_country.getText().equals("") ||
-                tf_city.getText().equals("") ||
-                tf_states.getText().equals("") ||
-                tf_portalcode.getText().equals("") ||
-                tf_region.getText().equals("") ||
-                tf_productid.getText().equals("") ||
-                tf_category.getText().equals("") ||
-                tf_subcategory.getText().equals("") ||
-                tf_productname.getText().equals("") ||
-                tf_sales.getText().equals("") ||
-                tf_quantity.getText().equals("") ||
-                tf_discount.getText().equals("") ||
-                tf_profit.getText().equals("") ) {
+        if (tf_orderId.getText().equals("")
+                || tf_orderdate.getText().equals("")
+                || tf_shipdate.getText().equals("")
+                || tf_shipMode.getText().equals("")
+                || tf_customerid.getText().equals("")
+                || tf_customername.getText().equals("")
+                || tf_segment.getText().equals("")
+                || tf_country.getText().equals("")
+                || tf_city.getText().equals("")
+                || tf_states.getText().equals("")
+                || tf_portalcode.getText().equals("")
+                || tf_region.getText().equals("")
+                || tf_productid.getText().equals("")
+                || tf_category.getText().equals("")
+                || tf_subcategory.getText().equals("")
+                || tf_productname.getText().equals("")
+                || tf_sales.getText().equals("")
+                || tf_quantity.getText().equals("")
+                || tf_discount.getText().equals("")
+                || tf_profit.getText().equals("")) {
             JOptionPane.showMessageDialog(this, "Tiene que llenar todos los campos!");
-            
+
         } else {
-            Order orden = new Order( tf_orderId.getText(), 
-                    tf_orderdate.getText(), 
-                    tf_shipdate.getText(), 
-                    tf_shipMode.getText(), 
-                    tf_customerid.getText(), 
-                    tf_customername.getText(), 
-                    tf_segment.getText(), 
-                    tf_country.getText(), 
-                    tf_city.getText(), 
-                    tf_states.getText(), 
-                    tf_portalcode.getText(), 
-                    tf_region.getText(), 
-                    tf_productid.getText(), 
-                    tf_category.getText(), 
-                    tf_subcategory.getText(), 
-                    tf_productname.getText(), 
-                    tf_sales.getText(), 
-                    tf_quantity.getText(), 
-                    tf_discount.getText(), 
+            Order orden = new Order(tf_orderId.getText(),
+                    tf_orderdate.getText(),
+                    tf_shipdate.getText(),
+                    tf_shipMode.getText(),
+                    tf_customerid.getText(),
+                    tf_customername.getText(),
+                    tf_segment.getText(),
+                    tf_country.getText(),
+                    tf_city.getText(),
+                    tf_states.getText(),
+                    tf_portalcode.getText(),
+                    tf_region.getText(),
+                    tf_productid.getText(),
+                    tf_category.getText(),
+                    tf_subcategory.getText(),
+                    tf_productname.getText(),
+                    tf_sales.getText(),
+                    tf_quantity.getText(),
+                    tf_discount.getText(),
                     tf_profit.getText());
-            Dba db = new Dba("./Database6.accdb");
+            Dba db = new Dba("./Database7.mdb");
             adminOrder ad = new adminOrder(db);
             ad.agregarOrder(orden);
+            h = new Hilo(Color.yellow, 6, jProgressBar1);
+            jProgressBar1.setForeground(new java.awt.Color(255, 255, 0));
+            h.start();
         }
     }//GEN-LAST:event_bt_agregarregistroMouseClicked
+
+    private void bt_eliminarregistroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bt_eliminarregistroMouseClicked
+        // TODO add your handling code here:
+        h = new Hilo(Color.MAGENTA, 5, jProgressBar1);
+        // h.setSegundos(5);
+        jProgressBar1.setForeground(new java.awt.Color(102, 0, 156));
+
+        h.start();
+    }//GEN-LAST:event_bt_eliminarregistroMouseClicked
+
+    private void bt_listaordersMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bt_listaordersMouseClicked
+        // TODO add your handling code here:
+        Dba db = new Dba("./Database7.mdb");
+        h = new Hilo(Color.GREEN, 4, jProgressBar1);
+        // h.setSegundos(4);
+        jProgressBar1.setForeground(new java.awt.Color(0, 204, 0));
+        adminOrder ad = new adminOrder(db);
+        ad.listarDetails(ta_listar);
+        h.start();
+        
+        
+    }//GEN-LAST:event_bt_listaordersMouseClicked
+
+    private void bt_listadetailsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bt_listadetailsMouseClicked
+        // TODO add your handling code here:
+        h = new Hilo(Color.ORANGE, 5, jProgressBar1);
+        //h.setSegundos(5);
+        jProgressBar1.setForeground(new java.awt.Color(255, 153, 0));
+
+        h.start();
+    }//GEN-LAST:event_bt_listadetailsMouseClicked
+
+    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+        // TODO add your handling code here:
+        h = new Hilo(Color.RED, 6, jProgressBar1);
+        //h.setSegundos(6);
+        h.setColor(Color.RED);
+
+        jProgressBar1.setForeground(new java.awt.Color(255, 0, 0));
+
+        h.start();
+    }//GEN-LAST:event_jButton1MouseClicked
+
+    private void bt_listarproductsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bt_listarproductsMouseClicked
+        // TODO add your handling code here:
+        h = new Hilo(Color.BLUE, 3, jProgressBar1);
+        // h.setSegundos(3);
+        jProgressBar1.setForeground(new java.awt.Color(0, 0, 255));
+
+        h.start();
+    }//GEN-LAST:event_bt_listarproductsMouseClicked
 
     /**
      * @param args the command line arguments
@@ -561,7 +641,7 @@ public class Main extends javax.swing.JFrame {
             }
         });
     }
-
+    Hilo h;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bt_agregarregistro;
     private javax.swing.JButton bt_eliminarregistro;

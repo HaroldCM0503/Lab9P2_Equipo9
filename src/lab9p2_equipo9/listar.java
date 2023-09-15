@@ -9,5 +9,18 @@ package lab9p2_equipo9;
  * @author Valeria Romero
  */
 public class listar {
+    private Dba admin;
+
+    public listar(Dba admin) {
+        this.admin = admin;
+    }
+
+    public Dba getAdmin() {
+        return admin;
+    }
+
+    public void setAdmin(Dba admin) {
+        this.admin = admin;
+    }
     
 }
