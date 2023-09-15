@@ -1,9 +1,14 @@
 package lab9p2_equipo9;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import javax.swing.JOptionPane;
+import javax.swing.JTable;
 import javax.swing.JTextArea;
+import javax.swing.table.DefaultTableModel;
 
 public class adminOrder {
+
     private Dba admin;
 
     public adminOrder(Dba admin) {
@@ -17,49 +22,49 @@ public class adminOrder {
     public void setAdmin(Dba admin) {
         this.admin = admin;
     }
-    
-    public void agregarOrder(Order orden){
+
+    public void agregarOrder(Order orden) {
         admin.conectar();
         try {
-            admin.query.execute("INSERT INTO TenRecord" 
+            admin.query.execute("INSERT INTO TenRecord"
                     + "([Order ID],[Order Date],[Ship Date],[Ship Mode],[Customer ID],[Customer Name],[Segment],[Country],[City],[State],[Postal Code],[Region],[Product ID],[Category],[Sub-Category],[Product Name],[Sales],[Quantity],[Discount],[Profit])"
-                    + " VALUES('" + orden.getOrderID() + "','" + 
-                    orden.getOrderDate() + "','" +
-                    orden.getShipDate() + "','" +
-                    orden.getShipMode() + "','" +
-                    orden.getCustomerID() + "','" +
-                    orden.getCustomerName() + "','" +
-                    orden.getSegment() + "','" +
-                    orden.getCountry() + "','" +
-                    orden.getCity() + "','" +
-                    orden.getState() + "','" +
-                    orden.getPostalCode() + "','" +
-                    orden.getRegion() + "','" +
-                    orden.getProductID() + "','" +
-                    orden.getCategory() + "','" +
-                    orden.getSub_Category() + "','" +
-                    orden.getProductName() + "','" +
-                    orden.getSales() + "','" +
-                    orden.getQuantity() + "','" +
-                    orden.getDiscount() + "','" +
-                    orden.getProfit() + "')"
-                    );
+                    + " VALUES('" + orden.getOrderID() + "','"
+                    + orden.getOrderDate() + "','"
+                    + orden.getShipDate() + "','"
+                    + orden.getShipMode() + "','"
+                    + orden.getCustomerID() + "','"
+                    + orden.getCustomerName() + "','"
+                    + orden.getSegment() + "','"
+                    + orden.getCountry() + "','"
+                    + orden.getCity() + "','"
+                    + orden.getState() + "','"
+                    + orden.getPostalCode() + "','"
+                    + orden.getRegion() + "','"
+                    + orden.getProductID() + "','"
+                    + orden.getCategory() + "','"
+                    + orden.getSub_Category() + "','"
+                    + orden.getProductName() + "','"
+                    + orden.getSales() + "','"
+                    + orden.getQuantity() + "','"
+                    + orden.getDiscount() + "','"
+                    + orden.getProfit() + "')"
+            );
             admin.commit();
-            
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
         admin.desconectar();
     }
-    
-    public void listarOrders(JTextArea texto){
+
+    public void listarOrders(JTextArea texto) {
         admin.conectar();
         try {
             admin.query.execute("SELECT a.[Order ID], a.[Order Date], a.[Ship Date], a.[Ship Mode], a.[Customer ID] FROM TenRecord a");
             ResultSet rs = admin.query.getResultSet();
             String lista = "";
             int cc = 1;
-            while(rs.next()){
+            while (rs.next()) {
                 lista += "Details " + cc + "\n";
                 lista += "Order ID: " + rs.getString(1) + "\n";
                 lista += "Order Date: " + rs.getString(2) + "\n";
@@ -74,15 +79,15 @@ public class adminOrder {
         } catch (SQLException e) {
         }
     }
-    
-    public void listarDetails(JTextArea texto){
+
+    public void listarDetails(JTextArea texto) {
         admin.conectar();
         try {
             admin.query.execute("SELECT a.[Order ID], a.[Product ID], a.[Sales], a.[Quantity], a.[Discount], a.[Profit] FROM TenRecord a");
             ResultSet rs = admin.query.getResultSet();
             String lista = "";
             int cc = 1;
-            while(rs.next()){
+            while (rs.next()) {
                 lista += "Details " + cc + "\n";
                 lista += "Order ID: " + rs.getString(1) + "\n";
                 lista += "Product ID: " + rs.getString(2) + "\n";
@@ -98,15 +103,15 @@ public class adminOrder {
         } catch (SQLException e) {
         }
     }
-    
-    public void listarCustomers(JTextArea texto){
+
+    public void listarCustomers(JTextArea texto) {
         admin.conectar();
         try {
             admin.query.execute("SELECT a.[Customer ID], a.[Customer Name], a.[Segment], a.[Country], a.[City], a.[State], a.[Postal Code], a.[Region] FROM TenRecord a");
             ResultSet rs = admin.query.getResultSet();
             String lista = "";
             int cc = 1;
-            while(rs.next()){
+            while (rs.next()) {
                 lista += "Customer " + cc + "\n";
                 lista += "Customer ID: " + rs.getString(1) + "\n";
                 lista += "Customer Name: " + rs.getString(2) + "\n";
@@ -124,15 +129,15 @@ public class adminOrder {
         } catch (SQLException e) {
         }
     }
-    
-    public void listarProducts(JTextArea texto){
+
+    public void listarProducts(JTextArea texto) {
         admin.conectar();
         try {
             admin.query.execute("SELECT a.[Product ID], a.[Category], a.[Sub-Category], a.[Product Name] FROM TenRecord a");
             ResultSet rs = admin.query.getResultSet();
             String lista = "";
             int cc = 1;
-            while(rs.next()){
+            while (rs.next()) {
                 lista += "Product " + cc + "\n";
                 lista += "Product ID: " + rs.getString(1) + "\n";
                 lista += "Category: " + rs.getString(2) + "\n";
@@ -146,5 +151,25 @@ public class adminOrder {
         } catch (SQLException e) {
         }
     }
-    
+
+    public void EliminarTabla(JTable tabla) {
+        DefaultTableModel tb = (DefaultTableModel) tabla.getModel();
+        String nacionalidad = JOptionPane.showInputDialog(this, "Ingrese la nacionalidad");
+        int columna = tabla.getSelectedColumn();
+        int columna2 = 1;
+        int row = tabla.getSelectedRow();
+        String nombre = tb.getValueAt(row, columna2).toString();
+        admin.conectar();
+        try {
+            admin.query.execute("delete \n"
+                    + "from TenRecord " + "\n"
+                    + "where ID = " + "\'" + nombre + "\'");//ejecuta query
+            ResultSet rs = admin.query.getResultSet();//tabla pero en memoria de java
+
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        admin.desconectar();
+    }
+
 }
