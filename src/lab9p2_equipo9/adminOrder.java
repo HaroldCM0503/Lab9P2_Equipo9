@@ -21,8 +21,9 @@ public class adminOrder {
     public void agregarOrder(Order orden){
         admin.conectar();
         try {
-            admin.query.execute("INSERT INTO TenRecord" 
-                    + "VALUES('" + orden.getOrderID() + "','" + 
+            admin.query.execute("INSERT INTO TenRecord " 
+                    + "(Order ID,Order Date,Ship Date,Ship Mode,Customer ID,Customer Name,Segment,Country,City,State,Postal Code,Region,Product ID,Category,Sub-Category,Product Name,Sales,Quantity,Discount,Profit)"
+                    + " VALUES('" + orden.getOrderID() + "','" + 
                     orden.getOrderDate() + "','" +
                     orden.getShipDate() + "','" +
                     orden.getShipMode() + "','" +
@@ -59,7 +60,7 @@ public class adminOrder {
             String lista = "";
             int cc = 1;
             while(rs.next()){
-                lista += "Order " + cc;
+                lista += "Details " + cc;
                 lista += "Order ID: " + rs.getString(1) + "\n";
                 lista += "Order Date: " + rs.getString(2) + "\n";
                 lista += "Ship Date: " + rs.getString(3) + "\n";
@@ -98,8 +99,52 @@ public class adminOrder {
         }
     }
     
-    public void listarCustomers(JTextArea texto){}
+    public void listarCustomers(JTextArea texto){
+        admin.conectar();
+        try {
+            admin.query.execute("select Customer ID, Customer Name, Segment, Country, City, State, Postal Code, Region from TenRecord");
+            ResultSet rs = admin.query.getResultSet();
+            String lista = "";
+            int cc = 1;
+            while(rs.next()){
+                lista += "Customer " + cc;
+                lista += "Customer ID: " + rs.getString(1) + "\n";
+                lista += "Customer Name: " + rs.getString(2) + "\n";
+                lista += "Segment: " + rs.getString(3) + "\n";
+                lista += "Country: " + rs.getString(4) + "\n";
+                lista += "City: " + rs.getString(5) + "\n";
+                lista += "State: " + rs.getString(6) + "\n";
+                lista += "Postal Code: " + rs.getString(7) + "\n";
+                lista += "Region: " + rs.getString(8) + "\n";
+                lista += "\n";
+                cc++;
+            }
+            texto.setText(lista);
+            admin.desconectar();
+        } catch (SQLException e) {
+        }
+    }
     
-    public void listarProducts(JTextArea texto){}
+    public void listarProducts(JTextArea texto){
+        admin.conectar();
+        try {
+            admin.query.execute("select : Product ID, Category, Sub-Category, Product Name from TenRecord");
+            ResultSet rs = admin.query.getResultSet();
+            String lista = "";
+            int cc = 1;
+            while(rs.next()){
+                lista += "Product " + cc;
+                lista += "Product ID: " + rs.getString(1) + "\n";
+                lista += "Category: " + rs.getString(2) + "\n";
+                lista += "Sub-Category: " + rs.getString(3) + "\n";
+                lista += "Product Name: " + rs.getString(4) + "\n";
+                lista += "\n";
+                cc++;
+            }
+            texto.setText(lista);
+            admin.desconectar();
+        } catch (SQLException e) {
+        }
+    }
     
 }
