@@ -623,19 +623,20 @@ public class Main extends javax.swing.JFrame {
         Dba db = new Dba("./DataBase6.mdb");
         db.conectar();
         try {
-            db.query.execute("select Id,[Order ID],[Order Date],[Customer ID],Country,City,[Product ID],Sales from TenRecord");//ejecuta query
+            db.query.execute("select [Row ID],[Order ID],[Order Date],[Customer ID],Country,City,[Product ID],Sales from TenRecord");//ejecuta query
             ResultSet rs = db.query.getResultSet();//tabla pero en memoria de java
             while (rs.next()) {
                 //rs.getInt(1) + "--->" + rs.getString(2)
                 String ID = rs.getString(1);
                 String OrderId = rs.getString(2);
-                String CustomerId = rs.getString(3);
-                String Country = rs.getString(4);
-                String City = rs.getString(5);
-                String PorductId = rs.getString(6);
-                String Sales = String.valueOf(rs.getInt(7));
+                String OrderDate = rs.getString(3);
+                String CustomerId = rs.getString(4);
+                String Country = rs.getString(5);
+                String City = rs.getString(6);
+                String PorductId = rs.getString(7);              
+                String Sales =rs.getString(8);
               
-                Object[] row = {ID,OrderId,CustomerId,Country,City,PorductId,Sales};
+                Object[] row = {ID,OrderDate,OrderId,CustomerId,Country,City,PorductId,Sales};
                 modelo.addRow(row);
                 tabla.setModel(modelo);
             }
