@@ -476,6 +476,8 @@ public class Main extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Eliminar Registro", jp_eliminar);
 
+        pb_barra.setForeground(new java.awt.Color(153, 255, 0));
+
         javax.swing.GroupLayout jp_barraLayout = new javax.swing.GroupLayout(jp_barra);
         jp_barra.setLayout(jp_barraLayout);
         jp_barraLayout.setHorizontalGroup(
@@ -608,7 +610,7 @@ public class Main extends javax.swing.JFrame {
         // TODO add your handling code here:
         h = new Hilo(Color.RED, 6, pb_barra);
         //h.setSegundos(6);
-        h.setColor(Color.RED);
+     
 
         pb_barra.setForeground(new java.awt.Color(255, 0, 0));
 

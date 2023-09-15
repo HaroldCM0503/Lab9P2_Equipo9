@@ -69,7 +69,16 @@ public class Hilo extends Thread {
      @Override
     public void run() {
         while (vivir) {
-            
+             p.setUI(new BasicProgressBarUI() {
+                protected Color getSelectionBackground() {
+                    return Color.CYAN; // Cambia el color de fondo de la barra de progreso
+                }
+
+                protected Color getSelectionForeground() {
+                    return Color.WHITE; // Cambia el color del texto
+                }
+               
+            });
              p.setValue(p.getValue()+1);
              if(p.getValue()==100000000){
                     vivir=false;
