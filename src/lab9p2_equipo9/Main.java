@@ -1,7 +1,10 @@
 package lab9p2_equipo9;
 
 import java.awt.Color;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 public class Main extends javax.swing.JFrame {
 
@@ -24,7 +27,7 @@ public class Main extends javax.swing.JFrame {
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tabla = new javax.swing.JTable();
         bt_updatetabla = new javax.swing.JButton();
         bt_eliminarregistro = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
@@ -82,7 +85,7 @@ public class Main extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tabla.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -98,9 +101,14 @@ public class Main extends javax.swing.JFrame {
                 return types [columnIndex];
             }
         });
-        jScrollPane2.setViewportView(jTable1);
+        jScrollPane2.setViewportView(tabla);
 
         bt_updatetabla.setText("Update Tabla");
+        bt_updatetabla.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                bt_updatetablaMouseClicked(evt);
+            }
+        });
 
         bt_eliminarregistro.setText("Eliminar Registro");
         bt_eliminarregistro.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -574,8 +582,8 @@ public class Main extends javax.swing.JFrame {
         adminOrder ad = new adminOrder(db);
         ad.listarDetails(ta_listar);
         h.start();
-        
-        
+
+
     }//GEN-LAST:event_bt_listaordersMouseClicked
 
     private void bt_listadetailsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bt_listadetailsMouseClicked
@@ -606,6 +614,36 @@ public class Main extends javax.swing.JFrame {
 
         h.start();
     }//GEN-LAST:event_bt_listarproductsMouseClicked
+
+    private void bt_updatetablaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bt_updatetablaMouseClicked
+        // TODO add your handling code here:
+        //select ID,[Order ID],[Order Date],[Customer ID],Country,City,[Product ID],Sales
+        //from TenRecord
+        DefaultTableModel modelo = (DefaultTableModel) tabla.getModel();
+        Dba db = new Dba("./DataBase7.mdb");
+        db.conectar();
+        try {
+            db.query.execute("select ID,[Order ID],[Order Date],[Customer ID],Country,City,[Product ID],Sales from TenRecord");//ejecuta query
+            ResultSet rs = db.query.getResultSet();//tabla pero en memoria de java
+            while (rs.next()) {
+                //rs.getInt(1) + "--->" + rs.getString(2)
+                String ID = rs.getString(1);
+                String OrderId = rs.getString(2);
+                String CustomerId = rs.getString(6);
+                String Country = rs.getString(9);
+                String City = rs.getString(10);
+                String PorductId = rs.getString(14);
+                String Sales = String.valueOf(rs.getInt(18));
+              
+                Object[] row = {ID,OrderId,CustomerId,Country,City,PorductId,Sales};
+                modelo.addRow(row);
+                tabla.setModel(modelo);
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        db.desconectar();
+    }//GEN-LAST:event_bt_updatetablaMouseClicked
 
     /**
      * @param args the command line arguments
@@ -679,8 +717,8 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JTextArea ta_listar;
+    private javax.swing.JTable tabla;
     private javax.swing.JTextField tf_category;
     private javax.swing.JTextField tf_city;
     private javax.swing.JTextField tf_country;
