@@ -60,7 +60,7 @@ public class adminOrder {
             String lista = "";
             int cc = 1;
             while(rs.next()){
-                lista += "Details " + cc;
+                lista += "Details " + cc + "\n";
                 lista += "Order ID: " + rs.getString(1) + "\n";
                 lista += "Order Date: " + rs.getString(2) + "\n";
                 lista += "Ship Date: " + rs.getString(3) + "\n";
@@ -83,7 +83,7 @@ public class adminOrder {
             String lista = "";
             int cc = 1;
             while(rs.next()){
-                lista += "Details " + cc;
+                lista += "Details " + cc + "\n";
                 lista += "Order ID: " + rs.getString(1) + "\n";
                 lista += "Product ID: " + rs.getString(2) + "\n";
                 lista += "Sales: " + rs.getString(3) + "\n";
@@ -107,7 +107,7 @@ public class adminOrder {
             String lista = "";
             int cc = 1;
             while(rs.next()){
-                lista += "Customer " + cc;
+                lista += "Customer " + cc + "\n";
                 lista += "Customer ID: " + rs.getString(1) + "\n";
                 lista += "Customer Name: " + rs.getString(2) + "\n";
                 lista += "Segment: " + rs.getString(3) + "\n";
@@ -133,7 +133,7 @@ public class adminOrder {
             String lista = "";
             int cc = 1;
             while(rs.next()){
-                lista += "Product " + cc;
+                lista += "Product " + cc + "\n";
                 lista += "Product ID: " + rs.getString(1) + "\n";
                 lista += "Category: " + rs.getString(2) + "\n";
                 lista += "Sub-Category: " + rs.getString(3) + "\n";
