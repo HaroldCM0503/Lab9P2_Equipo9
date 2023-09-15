@@ -21,8 +21,8 @@ public class adminOrder {
     public void agregarOrder(Order orden){
         admin.conectar();
         try {
-            admin.query.execute("INSERT INTO TenRecord " 
-                    + "(Order ID,Order Date,Ship Date,Ship Mode,Customer ID,Customer Name,Segment,Country,City,State,Postal Code,Region,Product ID,Category,Sub-Category,Product Name,Sales,Quantity,Discount,Profit)"
+            admin.query.execute("INSERT INTO TenRecord" 
+                    + "([Order ID],[Order Date],[Ship Date],[Ship Mode],[Customer ID],[Customer Name],[Segment],[Country],[City],[State],[Postal Code],[Region],[Product ID],[Category],[Sub-Category],[Product Name],[Sales],[Quantity],[Discount],[Profit])"
                     + " VALUES('" + orden.getOrderID() + "','" + 
                     orden.getOrderDate() + "','" +
                     orden.getShipDate() + "','" +
@@ -55,7 +55,7 @@ public class adminOrder {
     public void listarOrders(JTextArea texto){
         admin.conectar();
         try {
-            admin.query.execute("select Order ID, Order Date, Ship Date, Ship Mode, Customer ID from TenRecord");
+            admin.query.execute("SELECT a.[Order ID], a.[Order Date], a.[Ship Date], a.[Ship Mode], a.[Customer ID] FROM TenRecord a");
             ResultSet rs = admin.query.getResultSet();
             String lista = "";
             int cc = 1;
@@ -78,7 +78,7 @@ public class adminOrder {
     public void listarDetails(JTextArea texto){
         admin.conectar();
         try {
-            admin.query.execute("select Order ID, Product ID, Sales, Quantity, Discount, Profit from TenRecord");
+            admin.query.execute("SELECT a.[Order ID], a.[Product ID], a.[Sales], a.[Quantity], a.[Discount], a.[Profit] FROM TenRecord a");
             ResultSet rs = admin.query.getResultSet();
             String lista = "";
             int cc = 1;
@@ -102,7 +102,7 @@ public class adminOrder {
     public void listarCustomers(JTextArea texto){
         admin.conectar();
         try {
-            admin.query.execute("select Customer ID, Customer Name, Segment, Country, City, State, Postal Code, Region from TenRecord");
+            admin.query.execute("SELECT a.[Customer ID], a.[Customer Name], a.[Segment], a.[Country], a.[City], a.[State], a.[Postal Code], a.[Region] FROM TenRecord a");
             ResultSet rs = admin.query.getResultSet();
             String lista = "";
             int cc = 1;
@@ -128,7 +128,7 @@ public class adminOrder {
     public void listarProducts(JTextArea texto){
         admin.conectar();
         try {
-            admin.query.execute("select : Product ID, Category, Sub-Category, Product Name from TenRecord");
+            admin.query.execute("SELECT a.[Product ID], a.[Category], a.[Sub-Category], a.[Product Name] FROM TenRecord a");
             ResultSet rs = admin.query.getResultSet();
             String lista = "";
             int cc = 1;
