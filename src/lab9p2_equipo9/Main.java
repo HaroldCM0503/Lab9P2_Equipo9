@@ -555,7 +555,7 @@ public class Main extends javax.swing.JFrame {
                     tf_quantity.getText(),
                     tf_discount.getText(),
                     tf_profit.getText());
-            Dba db = new Dba("./Database7.mdb");
+            Dba db = new Dba("./Database6.mdb");
             adminOrder ad = new adminOrder(db);
             ad.agregarOrder(orden);
             h = new Hilo(Color.yellow, 6, jProgressBar1);
@@ -575,7 +575,7 @@ public class Main extends javax.swing.JFrame {
 
     private void bt_listaordersMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bt_listaordersMouseClicked
         // TODO add your handling code here:
-        Dba db = new Dba("./Database7.mdb");
+        Dba db = new Dba("./Database6.mdb");
         h = new Hilo(Color.GREEN, 4, jProgressBar1);
         // h.setSegundos(4);
         jProgressBar1.setForeground(new java.awt.Color(0, 204, 0));
@@ -620,20 +620,20 @@ public class Main extends javax.swing.JFrame {
         //select ID,[Order ID],[Order Date],[Customer ID],Country,City,[Product ID],Sales
         //from TenRecord
         DefaultTableModel modelo = (DefaultTableModel) tabla.getModel();
-        Dba db = new Dba("./DataBase7.mdb");
+        Dba db = new Dba("./DataBase6.mdb");
         db.conectar();
         try {
-            db.query.execute("select ID,[Order ID],[Order Date],[Customer ID],Country,City,[Product ID],Sales from TenRecord");//ejecuta query
+            db.query.execute("select Id,[Order ID],[Order Date],[Customer ID],Country,City,[Product ID],Sales from TenRecord");//ejecuta query
             ResultSet rs = db.query.getResultSet();//tabla pero en memoria de java
             while (rs.next()) {
                 //rs.getInt(1) + "--->" + rs.getString(2)
                 String ID = rs.getString(1);
                 String OrderId = rs.getString(2);
-                String CustomerId = rs.getString(6);
-                String Country = rs.getString(9);
-                String City = rs.getString(10);
-                String PorductId = rs.getString(14);
-                String Sales = String.valueOf(rs.getInt(18));
+                String CustomerId = rs.getString(3);
+                String Country = rs.getString(4);
+                String City = rs.getString(5);
+                String PorductId = rs.getString(6);
+                String Sales = String.valueOf(rs.getInt(7));
               
                 Object[] row = {ID,OrderId,CustomerId,Country,City,PorductId,Sales};
                 modelo.addRow(row);
