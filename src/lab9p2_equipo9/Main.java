@@ -1,5 +1,7 @@
 package lab9p2_equipo9;
 
+import javax.swing.JOptionPane;
+
 public class Main extends javax.swing.JFrame {
 
     /**
@@ -55,7 +57,7 @@ public class Main extends javax.swing.JFrame {
         jLabel20 = new javax.swing.JLabel();
         bt_agregarregistro = new javax.swing.JButton();
         tf_orderId = new javax.swing.JTextField();
-        jTextField1 = new javax.swing.JTextField();
+        tf_shipMode = new javax.swing.JTextField();
         tf_productname = new javax.swing.JTextField();
         tf_segment = new javax.swing.JTextField();
         tf_states = new javax.swing.JTextField();
@@ -255,6 +257,11 @@ public class Main extends javax.swing.JFrame {
         bt_agregarregistro.setBackground(new java.awt.Color(51, 204, 255));
         bt_agregarregistro.setForeground(new java.awt.Color(0, 0, 153));
         bt_agregarregistro.setText("Agregar Registro");
+        bt_agregarregistro.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                bt_agregarregistroMouseClicked(evt);
+            }
+        });
 
         tf_sales.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -281,7 +288,7 @@ public class Main extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(tf_orderId)
-                                    .addComponent(jTextField1)
+                                    .addComponent(tf_shipMode)
                                     .addComponent(tf_segment)
                                     .addComponent(tf_states)
                                     .addComponent(tf_productid, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)))
@@ -375,7 +382,7 @@ public class Main extends javax.swing.JFrame {
                             .addComponent(jLabel10)
                             .addComponent(jLabel14)
                             .addComponent(jLabel2)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(tf_shipMode, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(tf_customerid, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(tf_customername, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(60, 60, 60))
@@ -400,10 +407,10 @@ public class Main extends javax.swing.JFrame {
                         .addComponent(tf_region, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel16)
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel5)
                         .addComponent(jLabel12)
-                        .addComponent(jLabel16)
                         .addComponent(tf_productid, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(tf_category, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
@@ -469,6 +476,56 @@ public class Main extends javax.swing.JFrame {
     private void tf_salesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_salesActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_tf_salesActionPerformed
+
+    private void bt_agregarregistroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bt_agregarregistroMouseClicked
+        if (tf_orderId.getText().equals("") ||
+                tf_orderdate.getText().equals("") ||
+                tf_shipdate.getText().equals("") ||
+                tf_shipMode.getText().equals("") ||
+                tf_customerid.getText().equals("") ||
+                tf_customername.getText().equals("") ||
+                tf_segment.getText().equals("") ||
+                tf_country.getText().equals("") ||
+                tf_city.getText().equals("") ||
+                tf_states.getText().equals("") ||
+                tf_portalcode.getText().equals("") ||
+                tf_region.getText().equals("") ||
+                tf_productid.getText().equals("") ||
+                tf_category.getText().equals("") ||
+                tf_subcategory.getText().equals("") ||
+                tf_productname.getText().equals("") ||
+                tf_sales.getText().equals("") ||
+                tf_quantity.getText().equals("") ||
+                tf_discount.getText().equals("") ||
+                tf_profit.getText().equals("") ) {
+            JOptionPane.showMessageDialog(this, "Tiene que llenar todos los campos!");
+            
+        } else {
+            Order orden = new Order( tf_orderId.getText(), 
+                    tf_orderdate.getText(), 
+                    tf_shipdate.getText(), 
+                    tf_shipMode.getText(), 
+                    tf_customerid.getText(), 
+                    tf_customername.getText(), 
+                    tf_segment.getText(), 
+                    tf_country.getText(), 
+                    tf_city.getText(), 
+                    tf_states.getText(), 
+                    tf_portalcode.getText(), 
+                    tf_region.getText(), 
+                    tf_productid.getText(), 
+                    tf_category.getText(), 
+                    tf_subcategory.getText(), 
+                    tf_productname.getText(), 
+                    tf_sales.getText(), 
+                    tf_quantity.getText(), 
+                    tf_discount.getText(), 
+                    tf_profit.getText());
+            Dba db = new Dba("./Database6.accdb");
+            adminOrder ad = new adminOrder(db);
+            ad.agregarOrder(orden);
+        }
+    }//GEN-LAST:event_bt_agregarregistroMouseClicked
 
     /**
      * @param args the command line arguments
@@ -543,7 +600,6 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JTextArea ta_listar;
     private javax.swing.JTextField tf_category;
     private javax.swing.JTextField tf_city;
@@ -561,6 +617,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JTextField tf_region;
     private javax.swing.JTextField tf_sales;
     private javax.swing.JTextField tf_segment;
+    private javax.swing.JTextField tf_shipMode;
     private javax.swing.JTextField tf_shipdate;
     private javax.swing.JTextField tf_states;
     private javax.swing.JTextField tf_subcategory;

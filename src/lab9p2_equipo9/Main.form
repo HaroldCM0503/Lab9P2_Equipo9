@@ -275,7 +275,7 @@
                                       <EmptySpace max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                           <Component id="tf_orderId" max="32767" attributes="0"/>
-                                          <Component id="jTextField1" max="32767" attributes="0"/>
+                                          <Component id="tf_shipMode" max="32767" attributes="0"/>
                                           <Component id="tf_segment" max="32767" attributes="0"/>
                                           <Component id="tf_states" max="32767" attributes="0"/>
                                           <Component id="tf_productid" pref="150" max="32767" attributes="0"/>
@@ -396,7 +396,7 @@
                                   <Component id="jLabel10" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="jLabel14" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jTextField1" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="tf_shipMode" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="tf_customerid" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="tf_customername" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
@@ -429,10 +429,10 @@
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="jLabel16" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel12" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jLabel16" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="tf_productid" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="tf_category" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
@@ -635,10 +635,13 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="Agregar Registro"/>
               </Properties>
+              <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="bt_agregarregistroMouseClicked"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JTextField" name="tf_orderId">
             </Component>
-            <Component class="javax.swing.JTextField" name="jTextField1">
+            <Component class="javax.swing.JTextField" name="tf_shipMode">
             </Component>
             <Component class="javax.swing.JTextField" name="tf_productname">
             </Component>
