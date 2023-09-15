@@ -7,6 +7,7 @@ public class Order {
     String orderID;
     String orderDate;
     String shipDate;
+    String shipMode;
     String customerID;
     String customerName;
     String segment;
@@ -24,11 +25,12 @@ public class Order {
     String discount;
     String profit;
 
-    public Order(String id, String orderID, String orderDate, String shipDate, String customerID, String customerName, String segment, String country, String city, String State, String postalCode, String Region, String productID, String Category, String sub_Category, String productName, String sales, String quantity, String discount, String profit) {
+    public Order(String id, String orderID, String orderDate, String shipDate,String shipMode, String customerID, String customerName, String segment, String country, String city, String State, String postalCode, String Region, String productID, String Category, String sub_Category, String productName, String sales, String quantity, String discount, String profit) {
         this.id = id;
         this.orderID = orderID;
         this.orderDate = orderDate;
         this.shipDate = shipDate;
+        this.shipMode = shipMode;
         this.customerID = customerID;
         this.customerName = customerName;
         this.segment = segment;
@@ -210,6 +212,16 @@ public class Order {
         this.profit = profit;
     }
 
+    public String getShipMode() {
+        return shipMode;
+    }
+
+    public void setShipMode(String shipMode) {
+        this.shipMode = shipMode;
+    }
+
+    
+    
     @Override
     public String toString() {
         return "Order[" + orderID + ","+ productName + "]";
