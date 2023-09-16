@@ -576,7 +576,10 @@ public class Main extends javax.swing.JFrame {
         h = new Hilo(Color.MAGENTA, 5, pb_barra);
         // h.setSegundos(5);
         pb_barra.setForeground(new java.awt.Color(102, 0, 156));
-
+        Dba db = new Dba("./Database6.mdb");
+        adminOrder ad = new adminOrder(db);
+        ad.EliminarTabla(tabla);
+        JOptionPane.showMessageDialog(this, "Eliminado exitosamente!");
         h.start();
     }//GEN-LAST:event_bt_eliminarregistroMouseClicked
 
@@ -600,7 +603,7 @@ public class Main extends javax.swing.JFrame {
         pb_barra.setForeground(new java.awt.Color(255, 153, 0));
 
         h.start();
-        
+
         Dba db = new Dba("./Database6.mdb");
         adminOrder ad = new adminOrder(db);
         ad.listarDetails(ta_listar);
@@ -610,12 +613,11 @@ public class Main extends javax.swing.JFrame {
         // TODO add your handling code here:
         h = new Hilo(Color.RED, 6, pb_barra);
         //h.setSegundos(6);
-     
 
         pb_barra.setForeground(new java.awt.Color(255, 0, 0));
 
         h.start();
-        
+
         Dba db = new Dba("./Database6.mdb");
         adminOrder ad = new adminOrder(db);
         ad.listarCustomers(ta_listar);
@@ -628,7 +630,7 @@ public class Main extends javax.swing.JFrame {
         pb_barra.setForeground(new java.awt.Color(0, 0, 255));
 
         h.start();
-        
+
         Dba db = new Dba("./Database6.mdb");
         adminOrder ad = new adminOrder(db);
         ad.listarProducts(ta_listar);
@@ -641,6 +643,9 @@ public class Main extends javax.swing.JFrame {
         DefaultTableModel modelo = (DefaultTableModel) tabla.getModel();
         Dba db = new Dba("./DataBase6.mdb");
         db.conectar();
+        while (modelo.getRowCount() > 0) {
+            modelo.removeRow(0);
+        }
         try {
             db.query.execute("select [Row ID],[Order ID],[Order Date],[Customer ID],Country,City,[Product ID],Sales from TenRecord");//ejecuta query
             ResultSet rs = db.query.getResultSet();//tabla pero en memoria de java
@@ -652,10 +657,10 @@ public class Main extends javax.swing.JFrame {
                 String CustomerId = rs.getString(4);
                 String Country = rs.getString(5);
                 String City = rs.getString(6);
-                String PorductId = rs.getString(7);              
-                String Sales =rs.getString(8);
-              
-                Object[] row = {ID,OrderId,OrderDate,CustomerId,Country,City,PorductId,Sales};
+                String PorductId = rs.getString(7);
+                String Sales = rs.getString(8);
+
+                Object[] row = {ID, OrderId, OrderDate, CustomerId, Country, City, PorductId, Sales};
                 modelo.addRow(row);
                 tabla.setModel(modelo);
             }

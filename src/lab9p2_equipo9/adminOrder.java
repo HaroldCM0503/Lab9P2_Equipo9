@@ -154,16 +154,16 @@ public class adminOrder {
 
     public void EliminarTabla(JTable tabla) {
         DefaultTableModel tb = (DefaultTableModel) tabla.getModel();
-        String nacionalidad = JOptionPane.showInputDialog(this, "Ingrese la nacionalidad");
+        
         int columna = tabla.getSelectedColumn();
-        int columna2 = 1;
+        int columna2 = 0;
         int row = tabla.getSelectedRow();
         String nombre = tb.getValueAt(row, columna2).toString();
         admin.conectar();
         try {
             admin.query.execute("delete \n"
                     + "from TenRecord " + "\n"
-                    + "where ID = " + "\'" + nombre + "\'");//ejecuta query
+                    + "where [Row ID] = " + "\'" + nombre + "\'");//ejecuta query
             ResultSet rs = admin.query.getResultSet();//tabla pero en memoria de java
 
         } catch (SQLException ex) {
