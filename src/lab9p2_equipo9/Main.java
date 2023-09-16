@@ -573,14 +573,19 @@ public class Main extends javax.swing.JFrame {
 
     private void bt_eliminarregistroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bt_eliminarregistroMouseClicked
         // TODO add your handling code here:
-        h = new Hilo(Color.MAGENTA, 5, pb_barra);
-        // h.setSegundos(5);
-        pb_barra.setForeground(new java.awt.Color(102, 0, 156));
-        Dba db = new Dba("./Database6.mdb");
-        adminOrder ad = new adminOrder(db);
-        ad.EliminarTabla(tabla);
-        JOptionPane.showMessageDialog(this, "Eliminado exitosamente!");
-        h.start();
+        if (tabla.getRowCount() <= 0) {
+            JOptionPane.showMessageDialog(null, " OOPS! Ingrese informacion a la tabla");
+        } else {
+            h = new Hilo(Color.MAGENTA, 5, pb_barra);
+            // h.setSegundos(5);
+            pb_barra.setForeground(new java.awt.Color(102, 0, 156));
+            Dba db = new Dba("./Database6.mdb");
+            adminOrder ad = new adminOrder(db);
+            ad.EliminarTabla(tabla);
+            
+            h.start();
+            JOptionPane.showMessageDialog(this, "Eliminado exitosamente!");
+        }
     }//GEN-LAST:event_bt_eliminarregistroMouseClicked
 
     private void bt_listaordersMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bt_listaordersMouseClicked
@@ -663,8 +668,9 @@ public class Main extends javax.swing.JFrame {
                 Object[] row = {ID, OrderId, OrderDate, CustomerId, Country, City, PorductId, Sales};
                 modelo.addRow(row);
                 tabla.setModel(modelo);
-                JOptionPane.showMessageDialog(this, "Listado exitosamente!");
+               
             }
+             JOptionPane.showMessageDialog(this, "Listado exitosamente!");
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Algo salio mal! OOPS!");
         }
