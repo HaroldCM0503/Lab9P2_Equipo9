@@ -568,6 +568,29 @@ public class Main extends javax.swing.JFrame {
             h = new Hilo(Color.yellow, 6, pb_barra);
             pb_barra.setForeground(new java.awt.Color(255, 255, 0));
             h.start();
+            
+            tf_orderId.setText("");
+            tf_orderdate.setText("");
+            tf_shipdate.setText("");
+            tf_shipMode.setText("");
+            tf_customerid.setText("");
+            tf_customername.setText("");
+            tf_segment.setText("");
+            tf_country.setText("");
+            tf_city.setText("");
+            tf_states.setText("");
+            tf_portalcode.setText("");
+            tf_region.setText("");
+            tf_productid.setText("");
+            tf_category.setText("");
+            tf_subcategory.setText("");
+            tf_productname.setText("");
+            tf_sales.setText("");
+            tf_quantity.setText("");
+            tf_discount.setText("");
+            tf_profit.setText("");
+            
+            JOptionPane.showMessageDialog(this, "Agregado exitosamente!");
         }
     }//GEN-LAST:event_bt_agregarregistroMouseClicked
 
