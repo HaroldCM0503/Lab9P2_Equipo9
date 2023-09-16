@@ -573,7 +573,7 @@ public class Main extends javax.swing.JFrame {
 
     private void bt_eliminarregistroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bt_eliminarregistroMouseClicked
         // TODO add your handling code here:
-        if (tabla.getRowCount() <= 0) {
+        if (tabla.getSelectedRow() < 0) {
             JOptionPane.showMessageDialog(null, " OOPS! Ingrese informacion a la tabla");
         } else {
             h = new Hilo(Color.MAGENTA, 5, pb_barra);
