@@ -15,7 +15,7 @@ import javax.swing.plaf.basic.BasicProgressBarUI;
 public class Hilo extends Thread {
      private Color color;
     private int segundos;
-    private JProgressBar p;
+    private JProgressBar p = new JProgressBar();
     
     private boolean vivir=true;
 
