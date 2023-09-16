@@ -27,8 +27,8 @@ public class adminOrder {
         admin.conectar();
         try {
             admin.query.execute("INSERT INTO TenRecord"
-                    + "([Row ID],[Order ID],[Order Date],[Ship Date],[Ship Mode],[Customer ID],[Customer Name],[Segment],[Country],[City],[State],[Postal Code],[Region],[Product ID],[Category],[Sub-Category],[Product Name],[Sales],[Quantity],[Discount],[Profit])"
-                    + " VALUES('" + orden.getId()+","+orden.getOrderID() + "','"
+                    + "([Order ID],[Order Date],[Ship Date],[Ship Mode],[Customer ID],[Customer Name],[Segment],[Country],[City],[State],[Postal Code],[Region],[Product ID],[Category],[Sub-Category],[Product Name],[Sales],[Quantity],[Discount],[Profit])"
+                    + " VALUES('" + orden.getOrderID() + "','"
                     + orden.getOrderDate() + "','"
                     + orden.getShipDate() + "','"
                     + orden.getShipMode() + "','"

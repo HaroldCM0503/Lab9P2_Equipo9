@@ -3,7 +3,6 @@ package lab9p2_equipo9;
 import java.util.Date;
 
 public class Order {
-    String id;
     String orderID;
     String orderDate;
     String shipDate;
@@ -51,13 +50,6 @@ public class Order {
     public Order() {
     }
 
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
 
     public String getOrderID() {
         return orderID;

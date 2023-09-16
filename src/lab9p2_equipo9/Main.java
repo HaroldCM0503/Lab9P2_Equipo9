@@ -715,7 +715,7 @@ public class Main extends javax.swing.JFrame {
             }
         });
     }
-    Hilo h;
+    Hilo h = new Hilo();
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bt_agregarregistro;
     private javax.swing.JButton bt_clearArea;
