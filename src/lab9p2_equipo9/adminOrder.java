@@ -53,6 +53,7 @@ public class adminOrder {
 
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Algo salio mal! OOPS!");
+            e.printStackTrace();
         }
         admin.desconectar();
     }
@@ -65,7 +66,7 @@ public class adminOrder {
             String lista = "";
             int cc = 1;
             while (rs.next()) {
-                lista += "Details " + cc + "\n";
+                lista += "Order " + cc + "\n";
                 lista += "Order ID: " + rs.getString(1) + "\n";
                 lista += "Order Date: " + rs.getString(2) + "\n";
                 lista += "Ship Date: " + rs.getString(3) + "\n";
