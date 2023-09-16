@@ -663,9 +663,10 @@ public class Main extends javax.swing.JFrame {
                 Object[] row = {ID, OrderId, OrderDate, CustomerId, Country, City, PorductId, Sales};
                 modelo.addRow(row);
                 tabla.setModel(modelo);
+                JOptionPane.showMessageDialog(this, "Listado exitosamente!");
             }
         } catch (SQLException ex) {
-            ex.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Algo salio mal! OOPS!");
         }
         db.desconectar();
     }//GEN-LAST:event_bt_updatetablaMouseClicked

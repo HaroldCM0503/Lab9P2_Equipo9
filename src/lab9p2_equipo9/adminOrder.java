@@ -52,7 +52,7 @@ public class adminOrder {
             admin.commit();
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Algo salio mal! OOPS!");
         }
         admin.desconectar();
     }
@@ -77,6 +77,7 @@ public class adminOrder {
             texto.setText(lista);
             admin.desconectar();
         } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Algo salio mal! OOPS!");
         }
     }
 
@@ -101,6 +102,7 @@ public class adminOrder {
             texto.setText(lista);
             admin.desconectar();
         } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Algo salio mal! OOPS!");
         }
     }
 
@@ -127,6 +129,7 @@ public class adminOrder {
             texto.setText(lista);
             admin.desconectar();
         } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Algo salio mal! OOPS!");
         }
     }
 
@@ -149,6 +152,7 @@ public class adminOrder {
             texto.setText(lista);
             admin.desconectar();
         } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Algo salio mal! OOPS!");
         }
     }
 
@@ -166,8 +170,8 @@ public class adminOrder {
                     + "where [Row ID] = " + "\'" + nombre + "\'");//ejecuta query
             ResultSet rs = admin.query.getResultSet();//tabla pero en memoria de java
 
-        } catch (SQLException ex) {
-            ex.printStackTrace();
+        } catch (SQLException ex) {           
+            JOptionPane.showMessageDialog(null, "Algo salio mal! OOPS!");
         }
         admin.desconectar();
     }
